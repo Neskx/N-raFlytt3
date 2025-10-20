@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nära Flytt</title>
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  color: #111;
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 14px;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: none;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+
+.footer a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+  :root{
+    --brand:#f5c400;
+    --text:#1b1b1b;
+    --muted:#6b7280;
+    --white:#ffffff;
+    --card:#ffffff;
+    --shadow:0 10px 30px rgba(0,0,0,.15);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    color:var(--white);
+    background:#fff;
+  }
+
+  /* Topbar */
+  .topbar{
+    position:fixed; inset:0 0 auto 0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 300px;
+    z-index:10;
+    background:#fff; color:#000; border-bottom:1px solid #e5e7eb;
+  }
+  .brand{display:flex; align-items:center}
+  .brand img{height:70px; width:auto; display:block}
+  .contact{display:flex; align-items:center; gap:22px; font-weight:600}
+  .contact a{color:#000; text-decoration:none}
+
+  /* Hero */
+.hero{
+  position:relative;
+  min-height:auto;
+  display:grid;
+  grid-template-columns:1fr min(560px,90vw);
+  gap:80px;
+  align-items:stretch;
+  padding:180px 400px 60px 400px;
+  margin-bottom:0;
+  background: #fff url("assets/Background.png") center/cover no-repeat;
+}
+
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.10) 75%, rgba(0,0,0,0) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 100%);
+  pointer-events:none;
+}
+
+
+
+  .hero > *{position:relative; z-index:1}
+
+  /* Vänster kolumn + glasruta */
+  .left{display:flex; align-items:stretch; max-width:900px; padding:14px 10px}
+  .hero-glass{
+    display:flex; flex-direction:column; justify-content:center;
+    height:100%;
+    padding:40px 60px; border-radius:16px;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+
+  /* Typografi + ikoner */
+  .rating{display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; margin-bottom:6px}
+  .stars{display:flex; gap:2px}
+  .stars svg{height:18px; width:18px}
+  .stars svg path{fill:var(--brand)}
+  h1{font-size:clamp(42px,6vw,72px); line-height:1.02; margin:8px 0 10px; font-weight:800}
+  .lead{max-width:900px; font-size:clamp(16px,1.6vw,20px); color:#f4f4f4; opacity:.96}
+  .bullets{margin:26px 0 0; display:grid; gap:14px}
+  .bullet{display:flex; align-items:center; gap:12px; font-size:18px}
+  .check{
+    background:var(--brand); border-radius:50%; height:28px; width:28px;
+    display:inline-flex; align-items:center; justify-content:center; box-shadow:var(--shadow)
+  }
+  .check svg{height:16px; width:16px; color:#fff}
+
+  /* Ny sektion: två info-boxar */
+  .info-grid{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(220px,1fr));
+    gap:22px;
+  }
+  .info-card{
+    min-height:200px;
+    border-radius:28px;
+    background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 8px 24px rgba(0,0,0,.25) inset, 0 8px 24px rgba(0,0,0,.15);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:18px;
+  }
+  .info-card p{margin:0; color:#f3f3f3; font-weight:600}
+
+  /* Form-kort */
+  .card{
+    margin-left:auto; border-radius:var(--radius); background:var(--card); color:var(--text);
+    box-shadow:var(--shadow); padding:22px; width:100%; height:100%; display:flex; flex-direction:column;
+  }
+  .card h2{margin:4px 0 14px; font-size:24px; line-height:1.3; color:#0f172a}
+  .form-row{display:grid; gap:12px}
+  .label{font-weight:700; font-size:14px; color:#111}
+  .required::after{content:" *"; color:#ef4444}
+  .input,.select,textarea{width:100%; border:2px solid #d1d5db; border-radius:12px; padding:12px 14px; font-size:16px; background:#fff; transition:border-color 0.2s ease}
+  .input:focus,.select:focus,textarea:focus{outline:none; border-color:#000; box-shadow:0 0 0 3px rgba(0,0,0,.1)}
+  textarea{min-height:120px; resize:vertical}
+  .submit{margin-top:12px; width:100%; border:0; border-radius:12px; padding:14px 16px; font-weight:800; font-size:16px; background:var(--brand); color:#111; cursor:pointer}
+  .helper{font-size:12px; color:var(--muted); margin-top:6px}
+
+  /* Toast */
+  .toast{position:fixed; right:16px; bottom:16px; background:#111; color:#fff; padding:12px 14px; border-radius:12px; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); transition:all .25s ease; z-index:50}
+  .toast.show{opacity:1; transform:translateY(0)}
+
+  /* Responsivt */
+  @media (max-width:1100px){
+    .hero{grid-template-columns:1fr; padding:100px 24px 40px}
+    .topbar{padding:12px 20px}
+    .card{max-width:640px; height:auto}
+    .hero-glass{height:auto; padding:24px}
+    .info-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+
+  
+<!-- Topbar -->
+<div class="topbar">
+  <div class="brand"><img src="assets/TruckandText.png" alt="Nära Flytt"></div>
+  <div class="spacer"></div>
+  <div class="contact">
+    <a href="mailto:naraflytt@gmail.com">naraflytt@gmail.com</a>
+    <a href="tel:0793553082">0793553082</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <!-- Vänster: glasruta med text + ikoner -->
+  <div class="left">
+    <div class="hero-glass">
+      <div class="rating">
+        <span>4.9</span>
+        <div class="stars" aria-label="Betyg 4.9 av 5">
+          <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z"/></svg>
+        </div>
+      </div>
+
+      <h1>Nära Flytt</h1>
+      <p class="lead">Vi på Nära Flytt gör din flytt enkel, trygg och smidig.
+Vårt erfarna team hjälper dig hela vägen – från planering och packning till transport och uppackning.
+Vi arbetar alltid med största omsorg och respekt för dina saker och ser till att flytten sker snabbt, säkert och stressfritt.
+Oavsett om du flyttar inom stan eller till en ny ort, anpassar vi våra tjänster helt efter dina behov.</p>
+
+      <div class="bullets">
+        <div class="bullet">
+          <span class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.9 9.9a1 1 0 0 1-1.414 0l-5.256-5.256a1 1 0 1 1 1.414-1.414l4.549 4.549 9.193-9.193a1 1 0 0 1 1.414 0z"/></svg></span>
+          Varsam hantering av dina saker
+        </div>
+        <div class="bullet">
+          <span class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.9 9.9a1 1 0 0 1-1.414 0l-5.256-5.256a1 1 0 1 1 1.414-1.414l4.549 4.549 9.193-9.193a1 1 0 0 1 1.414 0z"/></svg></span>
+          Anpassat efter dig
+        </div>
+        <div class="bullet">
+          <span class="check"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.9 9.9a1 1 0 0 1-1.414 0l-5.256-5.256a1 1 0 1 1 1.414-1.414l4.549 4.549 9.193-9.193a1 1 0 0 1 1.414 0z"/></svg></span>
+          Alltid två erfarna lyftare för en snabb och säker flytt
+        </div>
+      </div>
+
+      <!-- Ny box-layout -->
+      <div class="info-grid">
+        <div class="info-card"><p>✓ Professionell personal med lång erfarenhet<br>✓ Försäkrade transporter och RUT-avdrag<br>✓ Punktliga och pålitliga vid varje uppdrag/<p></div>
+        <div class="info-card"><p>🏠Privatflytt, för dig som flyttar boende<br>🏢 Företagsflytt – effektivt och diskret<br>📦 Magasinering, packhjälp och montering</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Höger: formulär -->
+  <div class="card" role="form" aria-labelledby="formTitle">
+    <h2 id="formTitle">Få en kostnadsfri offert idag!</h2>
+    <form id="offerForm" class="form-row" novalidate>
+      <label class="label required" for="name">Fullständigt namn</label>
+      <input class="input" id="name" name="name" type="text" required>
+
+      <label class="label required" for="phone">Telefon</label>
+      <input class="input" id="phone" name="phone" type="tel" placeholder="070-123 45 67" required>
+
+      <label class="label" for="email">E-post</label>
+      <input class="input" id="email" name="email" type="email">
+
+      <label class="label required" for="service">Tjänst</label>
+      <select class="select" id="service" name="service" required>
+        <option value="" disabled selected>Välj en tjänst</option>
+        <option>Flytthjälp</option>
+        <option>Bortforsling</option>
+        <option>Magasinering</option>
+        <option>Pianoflytt</option>
+        <option>Packning</option>
+        <option>Städning</option>
+        <option>Kontorsflytt</option>
+        <option>Företagsflytt</option>
+        <option>Specialtransporter</option>
+        <option>Långdistansflytt</option>
+      </select>
+
+      <label class="label" for="message">Meddelande</label>
+      <textarea id="message" name="message" placeholder="Nuvarande adress, ny adress, datum, trappor/hiss, ungefärlig volym..."></textarea>
+
+      <button class="submit" type="submit">BEGÄR OFFERT</button>
+      <div class="helper">Genom att skicka accepterar du att vi kontaktar dig om din förfrågan.</div>
+    </form>
+  </div>
+</section>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const WEBHOOK_URL = "https://meggamind.app.n8n.cloud/webhook/naraflytt-lead";
+  const form = document.getElementById("offerForm");
+
+  function serializeForm(fd){
+    const data={};
+    for(const [k,v] of fd.entries()) data[k]=v;
+    data.timestamp=new Date().toISOString();
+    data.source=location.href;
+    return data;
+  }
+
+  form.addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+
+    try{
+      await fetch(WEBHOOK_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        mode:"cors",
+        body:JSON.stringify(serializeForm(new FormData(form)))
+      });
+    }catch(e){
+      /* ignorerar nätverks/CORS-fel – vi skickar ändå vidare till tack-sidan */
+    }finally{
+      window.location.href = "thankyou.html";
+    }
+  });
+</script>
+
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>
+      © 2025 Nära Flytt AB | Org.nr: 559123-4567 |  
+      Tel: <a href="tel:0793553082">0793553082</a> |  
+      E-post: <a href="mailto:naraflytt@gmail.com">naraflytt@gmail.com</a> |  
+      Adress: Malmö, Sverige
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
